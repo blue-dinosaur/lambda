@@ -16,7 +16,22 @@ infix 9 ...
 
 {-| The blackbird combinator
 
-    sum ... length = \xs -> sum (map length xs)
+    The use of this combinator is to build higher functions.
+
+    Example:
+
+    (sum ... map) length xs == sum (map length xs)
+
+    We can abstract is as:
+
+    aggregate f xs = sum ... map f xs
+    aggregate f = \xs -> sum map f xs
+    aggregate = \f -> \xs -> sum map f xs
+    aggregate = sum map f xs
+
+    And we can count the number of elements in a list of lists with:
+
+    aggregate length
 
 -}
 (...) : (a -> b) -> (c -> d -> a) -> (c -> d -> b)
